@@ -34,6 +34,6 @@ jobs:
 
     # 5. Deploying on Cloud Run
     - name: Deploy hello_world_function # Deploy using gcloud functions
-      run: gcloud functions deploy test_function --region europe-west1 --source cloud_functions/test --trigger-http --runtime python39
+      run: gcloud functions deploy test_function --region europe-west1 --source cloud_functions/test.py --trigger-http --runtime python39
 
 
