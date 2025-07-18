@@ -1,0 +1,41 @@
+# GCP Service Accounts
+*.json
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.venv/
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+Dockerfile.dev
+docker-compose.debug.yml
+
+# Logs and dbs
+*.log
+*.sqlite3
+*.db
+
+# macOS
+.DS_Store
+
+# Test and coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+build/
+*.egg-info/
