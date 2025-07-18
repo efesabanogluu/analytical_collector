@@ -34,6 +34,7 @@ jobs:
 
     # 5. Deploying on Cloud Run
     - name: Deploy hello_world_function # Deploy using gcloud functions
-      run: gcloud functions deploy test_function --region europe-west1 --source cloud_functions --trigger-http --runtime python39
+      run: gcloud functions deploy hello_world --region europe-west1 --source cloud_functions --trigger-http --runtime python39  --entry-point hello_world \
 
 
+# --trigger-event=providers/cloud.firestore/eventTypes/document.write --trigger-resource=projects/project_id/databases/(default)/documents/messages/{pushId}
