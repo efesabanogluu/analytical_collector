@@ -40,7 +40,7 @@ def process_files(request):
                 schema=[
                     bigquery.SchemaField("eventTime", "TIMESTAMP"),
                     bigquery.SchemaField("processTime", "TIMESTAMP"),
-                    bigquery.SchemaField("user", "STRING"),
+                    bigquery.SchemaField("user", "INT64"),
                     bigquery.SchemaField("level", "INT64"),
                     bigquery.SchemaField("state", "STRING"),
                 ]
