@@ -127,6 +127,9 @@ def process_files(request):
     BUCKET_NAME = os.getenv('BUCKET_NAME')
     FOLDER_PATH =  os.getenv('FOLDER_PATH')
 
+    print(PROJECT_ID)
+    print(os.getenv("GOOGLE_CLOUD_PROJECT"))
+    print(os.getenv("GCLOUD_PROJECT"))
     storage_client = storage.Client(project=PROJECT_ID)
     bq_client = bigquery.Client(project=PROJECT_ID)
 
