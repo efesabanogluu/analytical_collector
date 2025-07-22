@@ -141,7 +141,7 @@ def process_files(request):
     bucket = storage_client.bucket(BUCKET_NAME)
     blobs = bucket.list_blobs(prefix=FOLDER_PATH)
     print(bucket)
-    print(blolbs)
+    print(blobs)
     new_files = []
     for blob in blobs:
         file_name = blob.name
