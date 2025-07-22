@@ -4,9 +4,9 @@ import tempfile
 from datetime import datetime, timezone, timedelta
 import pandas as pd
 from google.cloud import storage, bigquery
-import pyarrow.parquet as pq
 import io
 from datetime import datetime
+
 # def gcs_to_bigquery(event, context):
 #     """
 #     Triggered by a change to a Cloud Storage bucket.
@@ -150,8 +150,7 @@ def process_files(request):
             # Dosyayı indir ve oku
             parquet_bytes = blob.download_as_bytes()
             parquet_file = io.BytesIO(parquet_bytes)
-            table = pq.read_table(parquet_file)
-            df = table.to_pandas()
+            df = pd.read_table(parquet_file,  engine='fastparquet')
 
             # BigQuery'ye yükle
             job = bq_client.load_table_from_dataframe(df, raw_table_ref)
