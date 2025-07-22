@@ -140,10 +140,13 @@ def process_files(request):
     # Bucket içindeki tüm dosyaları listele
     bucket = storage_client.bucket(BUCKET_NAME)
     blobs = bucket.list_blobs(prefix=FOLDER_PATH)
-
+    print(bucket)
+    print(blolbs)
     new_files = []
     for blob in blobs:
         file_name = blob.name
+        print(file_name)
+        print(processed_files)
         if file_name.endswith('.parquet') and file_name not in processed_files:
             print(f"Processing new file: {file_name}")
 
