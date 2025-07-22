@@ -178,4 +178,3 @@ def process_files(request):
             new_files.append(file_name)
 
     return f"Processed {len(new_files)} new files."
-
