@@ -139,10 +139,11 @@ def process_files(request):
 
     # Bucket içindeki tüm dosyaları listele
     bucket = storage_client.bucket(BUCKET_NAME)
+    blobs = bucket.list_blobs()
+    print("Listing all blobs without prefix:")
+    for blob in blobs:
+        print(blob.name)
     blobs = bucket.list_blobs(prefix=FOLDER_PATH)
-    print(bucket)
-    print("blob:")
-    print(blobs)
     new_files = []
     for blob in blobs:
         file_name = blob.name
