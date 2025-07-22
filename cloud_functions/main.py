@@ -127,10 +127,7 @@ def process_files(request):
     BUCKET_NAME = os.getenv('BUCKET_NAME')
     FOLDER_PATH =  os.getenv('FOLDER_PATH')
 
-    print(PROJECT_ID)
-    print(os.getenv("GOOGLE_CLOUD_PROJECT"))
-    print(os.getenv("GCLOUD_PROJECT"))
-    storage_client = storage.Client(project=PROJECT_ID)
+    storage_client = storage.Client()
     bq_client = bigquery.Client(project=PROJECT_ID)
 
     # Tablolar
@@ -154,8 +151,12 @@ def process_files(request):
             # Dosyayı indir ve oku
             parquet_bytes = blob.download_as_bytes()
             parquet_file = io.BytesIO(parquet_bytes)
-            df = pd.read_table(parquet_file,  engine='fastparquet')
-
+            df = pd.read_parquet(parquet_file,  engine='fastparquet')
+            df['eventTime'] = pd.to_datetime(df['eventTime'], errors='coerce')
+            df['processTime'] = pd.to_datetime(df['processTime'], errors='coerce')
+            df['user'] = df['user'].astype('string')
+            df['level'] = df['level'].astype('string')
+            df['state'] = df['state'].astype('string')
             # BigQuery'ye yükle
             job = bq_client.load_table_from_dataframe(df, raw_table_ref)
             job.result()  # İş bitene kadar bekle
