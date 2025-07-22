@@ -162,7 +162,7 @@ def process_files(request):
             df['level'] = df['level'].astype('string')
             df['state'] = df['state'].astype('string')
             # BigQuery'ye yükle
-            job = bq_client.load_table_from_dataframe(df, raw_table_ref,  source_format=bigquery.SourceFormat.PARQUET)
+            job = bq_client.load_table_from_dataframe(df, raw_table_ref)
             job.result()  # İş bitene kadar bekle
             # pandas_gbq.to_gbq(
             #     df,
