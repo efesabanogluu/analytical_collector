@@ -42,13 +42,7 @@ jobs:
 #      run: gcloud functions deploy gcs_to_bigquery --region europe-west1 --source cloud_functions --trigger-http --runtime python39  --trigger-resource user-level_try --trigger-event google.storage.object.finalize --entry-point gcs_to_bigquery
 
     - name: Deploy gcs_to_bigquery function
-      run: gcloud functions deploy process_files \
-            --region europe-west1 \
-            --source cloud_functions \
-            --runtime python39 \
-            --trigger-http \
-            --entry-point process_files \
-            --allow-unauthenticated
+      run: gcloud functions deploy process_files --region europe-west1 --source cloud_functions --runtime python39 --trigger-http --entry-point process_files --allow-unauthenticated
 
 
 # --trigger-event=providers/cloud.firestore/eventTypes/document.write --trigger-resource=projects/project_id/databases/(default)/documents/messages/{pushId}
