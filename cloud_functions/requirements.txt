@@ -3,4 +3,3 @@ google-cloud-bigquery
 functions-framework
 fastparquet
 pandas
-pandas-gbq
