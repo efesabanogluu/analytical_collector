@@ -119,8 +119,6 @@ from datetime import datetime
 
 
 def process_files(request):
-    storage_client = storage.Client()
-    bq_client = bigquery.Client()
 
     DATASET_ID = os.getenv('BIGQUERY_DATASET')
     RAW_TABLE_ID = os.getenv('BIGQUERY_TABLE')
@@ -128,6 +126,9 @@ def process_files(request):
     CONTROL_TABLE_ID = os.getenv('CONTROL_TABLE_ID')
     BUCKET_NAME = os.getenv('BUCKET_NAME')
     FOLDER_PATH =  os.getenv('FOLDER_PATH')
+
+    storage_client = storage.Client(project=PROJECT_ID)
+    bq_client = bigquery.Client(project=PROJECT_ID)
 
     # Tablolar
     raw_table_ref = f"{PROJECT_ID}.{DATASET_ID}.{RAW_TABLE_ID}"
