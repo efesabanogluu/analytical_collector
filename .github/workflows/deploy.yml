@@ -10,7 +10,7 @@ env:
   BIGQUERY_TABLE: raw_user_level_success
   CONTROL_TABLE_ID: control_level_success
   BUCKET_NAME : caseleveltry
-  FOLDER_PATH : case_daily/
+  FOLDER_PATH : case_daily
   
 jobs:
   deploy:
