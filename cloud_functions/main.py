@@ -34,14 +34,20 @@ def process_files(request):
         if file_name.endswith('.parquet') and file_name not in processed_files:
             print(f"Processing new file: {file_name}")
 
-            # Dosya URI’si (gs://...)
-            source_uri = f"gs://{BUCKET_NAME}/{file_name}"
-
-            # BigQuery yükleme yapılandırması
             job_config = bigquery.LoadJobConfig(
                 source_format=bigquery.SourceFormat.PARQUET,
                 write_disposition=bigquery.WriteDisposition.WRITE_APPEND,
+                schema=[
+                    bigquery.SchemaField("eventTime", "TIMESTAMP"),
+                    bigquery.SchemaField("processTime", "TIMESTAMP"),
+                    bigquery.SchemaField("user", "STRING"),
+                    bigquery.SchemaField("level", "STRING"),
+                    bigquery.SchemaField("state", "STRING"),
+                ]
             )
+
+            # Dosya URI’si (gs://...)
+            source_uri = f"gs://{BUCKET_NAME}/{file_name}"
 
             load_job = bq_client.load_table_from_uri(
                 source_uri,
