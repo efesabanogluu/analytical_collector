@@ -6,6 +6,7 @@ import pandas as pd
 from google.cloud import storage, bigquery
 import io
 from datetime import datetime
+import pandas_gbq
 
 # def gcs_to_bigquery(event, context):
 #     """
@@ -158,9 +159,14 @@ def process_files(request):
             df['level'] = df['level'].astype('string')
             df['state'] = df['state'].astype('string')
             # BigQuery'ye yükle
-            job = bq_client.load_table_from_dataframe(df, raw_table_ref)
-            job.result()  # İş bitene kadar bekle
-
+            #job = bq_client.load_table_from_dataframe(df, raw_table_ref)
+            #job.result()  # İş bitene kadar bekle
+            pandas_gbq.to_gbq(
+                df,
+                destination_table=DATASET_ID + "." + RAW_TABLE_ID,
+                project_id=PROJECT_ID,
+                if_exists='append'
+            )
             # Kontrol tablosuna ekle
             rows_to_insert = [{
                 'file_name': file_name,
