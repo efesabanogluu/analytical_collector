@@ -3,4 +3,4 @@ google-cloud-bigquery
 functions-framework
 fastparquet
 pandas
-pyarrow==14.0.2
+pyarrow==21.0.0
