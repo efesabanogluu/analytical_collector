@@ -41,7 +41,7 @@ def process_files(request):
                     bigquery.SchemaField("eventTime", "TIMESTAMP"),
                     bigquery.SchemaField("processTime", "TIMESTAMP"),
                     bigquery.SchemaField("user", "STRING"),
-                    bigquery.SchemaField("level", "STRING"),
+                    bigquery.SchemaField("level", "INT64"),
                     bigquery.SchemaField("state", "STRING"),
                 ]
             )
